@@ -1,0 +1,1103 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>El Caracol Verde · Informe Social Media</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap">
+
+<style>
+:root {
+  --bg:        #FFFFFF;
+  --bg-page:   #F5F5F5;
+  --bg-card:   #FFFFFF;
+  --bg-muted:  #F0F0F0;
+  --fg:        #1A1A1A;
+  --fg-2:      #444444;
+  --fg-3:      #888888;
+  --border:    #E0E0E0;
+  --green-hdr: #2D5A3D;
+  --green:     #4A7C59;
+  --green-lt:  #D4EAD9;
+  --green-bar: #6EA882;
+  --coral:     #D05A3E;
+  --gold:      #C08A10;
+  --font-display: 'Barlow Condensed', Arial Narrow, sans-serif;
+  --font-body:    'DM Sans', system-ui, sans-serif;
+  --radius: 10px;
+  --shadow: 0 1px 8px rgba(0,0,0,.07);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg:        #111111;
+    --bg-page:   #0D0D0D;
+    --bg-card:   #1C1C1C;
+    --bg-muted:  #252525;
+    --fg:        #F0F0F0;
+    --fg-2:      #BBBBBB;
+    --fg-3:      #777777;
+    --border:    #333333;
+    --green-hdr: #3A6E4A;
+    --green:     #6EA882;
+    --green-lt:  #1E3828;
+    --green-bar: #4A7C59;
+    --coral:     #E07060;
+    --gold:      #D4A020;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg:        #111111;
+  --bg-page:   #0D0D0D;
+  --bg-card:   #1C1C1C;
+  --bg-muted:  #252525;
+  --fg:        #F0F0F0;
+  --fg-2:      #BBBBBB;
+  --fg-3:      #777777;
+  --border:    #333333;
+  --green-hdr: #3A6E4A;
+  --green:     #6EA882;
+  --green-lt:  #1E3828;
+  --green-bar: #4A7C59;
+  --coral:     #E07060;
+  --gold:      #D4A020;
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg-page);
+  color: var(--fg);
+  font-size: 20px;
+  line-height: 1.55;
+  padding-left: max(0px, env(safe-area-inset-left,0px));
+  padding-right: max(0px, env(safe-area-inset-right,0px));
+}
+
+/* ── HEADER ── */
+.hdr {
+  position: sticky;
+  top: env(safe-area-inset-top,0px);
+  z-index: 100;
+  background: var(--green-hdr);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 10px max(20px, env(safe-area-inset-left,0px));
+}
+body::before {
+  content:""; position:fixed; inset:0 0 auto;
+  height:env(safe-area-inset-top,0px); z-index:101;
+  background:var(--green-hdr);
+}
+.hdr-badge { font-size:.72rem; background:rgba(255,255,255,.15); border-radius:20px; padding:3px 10px; color:#fff; }
+.hdr-logo { height:48px; width:auto; display:block; }
+
+/* ── MONTH SELECTOR ── */
+.month-nav {
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: calc(env(safe-area-inset-top,0px) + 74px);
+  z-index: 90;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.month-nav::-webkit-scrollbar { display:none; }
+.month-tabs {
+  display: flex;
+  padding: 0 max(16px, env(safe-area-inset-left,0px));
+  min-width: max-content;
+}
+.mtab {
+  padding: 10px 16px;
+  font-size: .75rem;
+  font-weight: 600;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: var(--fg-3);
+  border-bottom: 3px solid transparent;
+  transition: color .15s, border-color .15s;
+  white-space: nowrap;
+}
+.mtab:hover { color: var(--green); }
+.mtab.active { color: var(--green); border-bottom-color: var(--green); }
+
+/* ── MAIN ── */
+.main {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 24px max(16px, env(safe-area-inset-left,0px));
+}
+
+/* ── MONTH SECTION ── */
+.month-section { display:none; }
+.month-section.active { display:block; }
+
+.section-label {
+  font-size:.65rem;
+  font-weight:700;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:var(--green);
+  margin-bottom:4px;
+}
+.section-title {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--fg);
+  margin-bottom: 2px;
+}
+.section-desc {
+  font-size:1rem;
+  color:var(--fg-3);
+  margin-bottom:20px;
+}
+
+/* ── KPI GRID ── */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(155px,1fr));
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.kpi {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px 16px 14px;
+  box-shadow: var(--shadow);
+}
+.kpi-lbl {
+  font-size:.8rem;
+  font-weight:700;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:var(--fg-3);
+  margin-bottom:6px;
+}
+.kpi-val {
+  font-size:1.7rem;
+  font-weight:700;
+  font-family:var(--font-display);
+  color:var(--fg);
+  line-height:1;
+  font-variant-numeric:tabular-nums;
+}
+.kpi-delta {
+  font-size:.72rem;
+  font-weight:600;
+  margin-top:4px;
+}
+.up { color:var(--green); }
+.dn { color:var(--coral); }
+.neutral { color:var(--fg-3); }
+.kpi-note { font-size:.85rem; color:var(--fg-3); margin-top:2px; }
+
+/* ── CHART ROW ── */
+.chart-row {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  margin-bottom:12px;
+}
+@media(max-width:640px){ .chart-row { grid-template-columns:1fr; } }
+.chart-card {
+  background:var(--bg-card);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:16px;
+  box-shadow:var(--shadow);
+}
+.chart-card.full { grid-column:1/-1; }
+.chart-lbl {
+  font-size:.63rem;
+  font-weight:700;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:var(--fg-3);
+  margin-bottom:12px;
+}
+.chart-wrap { overflow-x:auto; }
+
+/* ── INSIGHT ── */
+.insight {
+  background:var(--bg-card);
+  border-left:3px solid var(--green);
+  border-radius:var(--radius);
+  padding:14px 16px;
+  margin-bottom:12px;
+  font-size:1rem;
+  color:var(--fg-2);
+  box-shadow:var(--shadow);
+}
+.insight strong { display:block; color:var(--fg); font-size:1.05rem; margin-bottom:3px; }
+
+/* ── TABLE ── */
+.tbl-wrap { overflow-x:auto; border-radius:var(--radius); border:1px solid var(--border); box-shadow:var(--shadow); }
+table { width:100%; border-collapse:collapse; font-size:.8rem; }
+th {
+  text-align:left; padding:8px 12px;
+  font-size:.62rem; font-weight:700; letter-spacing:.07em; text-transform:uppercase;
+  color:var(--fg-3); border-bottom:2px solid var(--border);
+  background:var(--bg-muted);
+}
+td { padding:9px 12px; border-bottom:1px solid var(--border); color:var(--fg-2); }
+tr:last-child td { border-bottom:none; }
+tr:hover td { background:var(--bg-muted); }
+.badge { display:inline-block; padding:2px 7px; border-radius:10px; font-size:.62rem; font-weight:700; }
+.badge-g { background:var(--green-lt); color:var(--green); }
+.badge-n { background:var(--bg-muted); color:var(--fg-3); }
+
+/* ── LEGEND ── */
+.legend { display:flex; flex-wrap:wrap; gap:10px; margin-top:10px; }
+.leg { display:flex; align-items:center; gap:5px; font-size:.7rem; color:var(--fg-2); }
+.leg-dot { width:9px; height:9px; border-radius:50%; flex-shrink:0; }
+.leg-line { width:18px; height:2px; border-radius:2px; flex-shrink:0; }
+
+/* ── TOOLTIP ── */
+#tt {
+  position:fixed; pointer-events:none;
+  background:var(--bg-card); border:1px solid var(--border);
+  border-radius:7px; padding:7px 11px;
+  font-size:.75rem; color:var(--fg); box-shadow:0 4px 16px rgba(0,0,0,.12);
+  opacity:0; transition:opacity .12s; z-index:999; white-space:nowrap;
+}
+#tt.show { opacity:1; }
+
+/* ── FOOTER ── */
+.footer {
+  margin-top:32px; padding-top:16px;
+  border-top:1px solid var(--border);
+  font-size:.68rem; color:var(--fg-3);
+  display:flex; justify-content:space-between; flex-wrap:wrap; gap:6px;
+}
+
+/* ── GLOBAL OVERVIEW ── */
+.overview-grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:12px;
+  margin-bottom:20px;
+}
+</style>
+
+<div id="tt"></div>
+
+<!-- HEADER -->
+<header class="hdr">
+  <img src="data:image/png;base64,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" class="hdr-logo" alt="El Caracol Verde">
+  <div class="hdr-badge">Informe Social Media · Feb–Sept 2026</div>
+</header>
+
+<!-- MONTH TABS -->
+<nav class="month-nav">
+  <div class="month-tabs">
+    <button class="mtab active" data-m="feb">Febrero</button>
+    <button class="mtab" data-m="mar">Marzo</button>
+    <button class="mtab" data-m="abr">Abril</button>
+    <button class="mtab" data-m="may">Mayo</button>
+    <button class="mtab" data-m="jun">Junio</button>
+    <button class="mtab" data-m="jul">Julio</button>
+    <button class="mtab" data-m="ago">Agosto</button>
+    <button class="mtab" data-m="sep">Septiembre</button>
+    <button class="mtab" data-m="global">📊 Global 2026</button>
+  </div>
+</nav>
+
+<div class="main">
+
+<!-- ════════════════════ FEBRERO ════════════════════ -->
+<section class="month-section active" id="sec-feb">
+  <div class="section-label">Mes 1 · Arranque</div>
+  <div class="section-title">Febrero 2026</div>
+  <p class="section-desc">Primer mes en redes. Lanzamiento de cuenta y primer sorteo que explota el alcance.</p>
+
+  <div class="kpi-grid">
+    <div class="kpi">
+      <div class="kpi-lbl">Seguidores IG al cierre</div>
+      <div class="kpi-val">~2.500</div>
+      <div class="kpi-delta up">↑ Arrancamos desde ~1.360</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-lbl">Impresiones</div>
+      <div class="kpi-val">320K</div>
+      <div class="kpi-delta up">↑ Pico del sorteo</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-lbl">Interacciones</div>
+      <div class="kpi-val">~9.500</div>
+      <div class="kpi-delta neutral">Principalmente sorteo</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-lbl">Top post</div>
+      <div class="kpi-val" style="font-size:.95rem;line-height:1.3;margin-top:4px">Sorteo San Valentín</div>
+      <div class="kpi-note" style="margin-top:5px">30.860 imp</div>
+      <div class="kpi-note">9.086 interacciones</div>
+    </div>
+  </div>
+
+  <div class="insight">
+    <strong>💡 El primer sorteo lo cambia todo</strong>
+    El sorteo de San Valentín genera 30.860 impresiones y 9.086 interacciones en un solo post — el mejor del período completo. Prácticamente duplicamos seguidores en el mes. El alcance pagado de Meta Ads (CPM 1,14€) amplifica el efecto más allá del radio orgánico.
+  </div>
+
+  <div class="chart-row">
+    <div class="chart-card">
+      <div class="chart-lbl">Desglose impresiones Feb</div>
+      <svg id="c-feb-imp" viewBox="0 0 280 160" width="100%"></svg>
+    </div>
+    <div class="chart-card">
+      <div class="chart-lbl">Top contenido Feb</div>
+      <svg id="c-feb-top" viewBox="0 0 280 120" width="100%"></svg>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════ MARZO ════════════════════ -->
+<section class="month-section" id="sec-mar">
+  <div class="section-label">Mes 2</div>
+  <div class="section-title">Marzo 2026</div>
+  <p class="section-desc">Consolidación post-sorteo. Pico de seguidores — la comunidad toma forma.</p>
+
+  <div class="kpi-grid">
+    <div class="kpi">
+      <div class="kpi-lbl">Seguidores IG al cierre</div>
+      <div class="kpi-val">~3.000</div>
+      <div class="kpi-delta up">↑ +500 vs feb</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-lbl">Impresiones</div>
+      <div class="kpi-val">285K</div>
+      <div class="kpi-delta dn">↓ Bajamos del pico de feb</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-lbl">Interacciones</div>
+      <div class="kpi-val">~2.800</div>
+      <div class="kpi-delta neutral">Ritmo normalizado</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-lbl">Gasto Meta Ads</div>
+      <div class="kpi-val">~250€</div>
+      <div class="kpi-note">Estimado</div>
+    </div>
+  </div>
+
+  <div class="insight">
+    <strong>📌 Post-sorteo: base sólida</strong>
+    Tras el boom de febrero, las impresiones bajan pero los seguidores aguantan y siguen creciendo. Es la señal de que el contenido regular engancha — la comunidad no se fue con el sorteo.
+  </div>
+
+  <div class="chart-card full">
+    <div class="chart-lbl">Evolución seguidores Feb → Mar</div>
+    <svg id="c-mar-growth" viewBox="0 0 640 140" width="100%"></svg>
+  </div>
+</section>
+
+<!-- ════════════════════ ABRIL ════════════════════ -->
+<section class="month-section" id="sec-abr">
+  <div class="section-label">Mes 3</div>
+  <div class="section-title">Abril 2026</div>
+  <p class="section-desc">Crecimiento estable. Se consolida el estilo editorial de la cuenta.</p>
+
+  <div class="kpi-grid">
+    <div class="kpi">
+      <div class="kpi-lbl">Seguidores IG al cierre</div>
+      <div class="kpi-val">~4.100</div>
+      <div class="kpi-delta up">↑ +1.100 vs mar</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-lbl">Impresiones</div>
+      <div class="kpi-val">180K</div>
+      <div class="kpi-delta neutral">Estabilización</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-lbl">Reels activos</div>
+      <div class="kpi-val">~10</div>
+      <div class="kpi-note">Formato con mayor alcance</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-lbl">Eng. rate medio</div>
+      <div class="kpi-val">8–12%</div>
+      <div class="kpi-note">Vs. 1–3% sector</div>
+    </div>
+  </div>
+
+  <div class="insight">
+    <strong>📌 Los reels empiezan a tirar</strong>
+    Abril es el mes en que los reels comienzan a generar alcance fuera de los seguidores actuales. El algoritmo empieza a distribuir el contenido de forma orgánica a audiencias frías de Gijón y Oviedo.
+  </div>
+
+  <div class="chart-card full">
+    <div class="chart-lbl">Alcance por formato (estimado, abril)</div>
+    <svg id="c-abr-format" viewBox="0 0 640 130" width="100%"></svg>
+  </div>
+</section>
+
+<!-- ════════════════════ MAYO ════════════════════ -->
+<section class="month-section" id="sec-may">
+  <div class="section-label">Mes 4</div>
+  <div class="section-title">Mayo 2026</div>
+  <p class="section-desc">Segundo sorteo. Nuevo pico de engagement y crecimiento acelerado.</p>
+
+  <div class="kpi-grid">
+    <div class="kpi">
+      <div class="kpi-lbl">Seguidores IG al cierre</div>
+      <div class="kpi-val">~4.700</div>
+      <div class="kpi-delta up">↑ +600 vs abr</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-lbl">Impresiones</div>
+      <div class="kpi-val">160K</div>
+      <div class="kpi-delta neutral">Sin gran sorteo</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-lbl">Interacciones</div>
+      <div class="kpi-val">~3.200</div>
+      <div class="kpi-delta up">↑ Mes fuerte</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-lbl">Gasto Meta Ads</div>
+      <div class="kpi-val">~250€</div>
+      <div class="kpi-note">Estimado</div>
+    </div>
+  </div>
+
+  <div class="insight">
+    <strong>📌 Crecimiento orgánico sostenido</strong>
+    Mayo no tiene un gran sorteo pero crece igual. Es señal de que el contenido de producto (novedades, lámparas, cuadros, acabados) está funcionando por sí solo sin necesidad de incentivos.
+  </div>
+</section>
+
+<!-- ════════════════════ JUNIO ════════════════════ -->
+<section class="month-section" id="sec-jun">
+  <div class="section-label">Mes 5</div>
+  <div class="section-title">Junio 2026</div>
+  <p class="section-desc">Mes de verano. Ritmo más tranquilo, comunidad activa.</p>
+
+  <div class="kpi-grid">
+    <div class="kpi">
+      <div class="kpi-lbl">Seguidores IG al cierre</div>
+      <div class="kpi-val">~4.900</div>
+      <div class="kpi-delta up">↑ +200 vs may</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-lbl">Impresiones</div>
+      <div class="kpi-val">120K</div>
+      <div class="kpi-delta dn">↓ Mes más flojo del período</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-lbl">Publicaciones</div>
+      <div class="kpi-val">~30</div>
+      <div class="kpi-note">Estimado</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-lbl">Audiencia Gijón</div>
+      <div class="kpi-val">41%</div>
+      <div class="kpi-note">Hiperlocal consolidado</div>
+    </div>
+  </div>
+
+  <div class="insight">
+    <strong>📌 Bajón típico de verano</strong>
+    Junio es el mes con menos impresiones del período. Es normal en el sector deco/hogar: la gente piensa menos en decorar en verano. Los seguidores siguen creciendo, aunque más despacio. Momento para preparar contenido de otoño.
+  </div>
+</section>
+
+<!-- ════════════════════ JULIO ════════════════════ -->
+<section class="month-section" id="sec-jul">
+  <div class="section-label">Mes 6</div>
+  <div class="section-title">Julio 2026</div>
+  <p class="section-desc">Sorteo de verano y el reel viral de la jefa. Recuperación del engagement.</p>
+
+  <div class="kpi-grid">
+    <div class="kpi">
+      <div class="kpi-lbl">Seguidores IG al cierre</div>
+      <div class="kpi-val">~5.000</div>
+      <div class="kpi-delta up">↑ Hito: 5K</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-lbl">Impresiones</div>
+      <div class="kpi-val">215K</div>
+      <div class="kpi-delta up">↑ Remontada</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-lbl">Top post</div>
+      <div class="kpi-val" style="font-size:1rem;margin-top:4px">Sorteo Julio</div>
+      <div class="kpi-note">16.360 imp · 1.853 int</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-lbl">Top reel</div>
+      <div class="kpi-val" style="font-size:.95rem;margin-top:4px">"La jefa promete"</div>
+      <div class="kpi-note">6.338 visualizaciones</div>
+    </div>
+  </div>
+
+  <div class="insight">
+    <strong>🏆 Hito: superamos los 5.000 seguidores</strong>
+    Julio tiene el segundo sorteo del período (16.360 imp) y el reel más visto de toda la etapa — "La jefa promete vacaciones" con 6.338 reproducciones. El contenido humano y cercano supera en muchos casos al contenido de producto puro.
+  </div>
+
+  <div class="chart-card full">
+    <div class="chart-lbl">Comparativa sorteos: impresiones vs. interacciones</div>
+    <svg id="c-jul-sorteos" viewBox="0 0 640 160" width="100%"></svg>
+    <div class="legend">
+      <div class="leg"><div class="leg-dot" style="background:#4A7C59"></div>Impresiones (÷100)</div>
+      <div class="leg"><div class="leg-dot" style="background:#6EA882"></div>Interacciones</div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════ AGOSTO ════════════════════ -->
+<section class="month-section" id="sec-ago">
+  <div class="section-label">Mes 7</div>
+  <div class="section-title">Agosto 2026</div>
+  <p class="section-desc">Mes de vacaciones. Ritmo reducido, base sólida.</p>
+
+  <div class="kpi-grid">
+    <div class="kpi">
+      <div class="kpi-lbl">Seguidores IG al cierre</div>
+      <div class="kpi-val">~5.100</div>
+      <div class="kpi-delta up">↑ +100 vs jul</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-lbl">Impresiones</div>
+      <div class="kpi-val">140K</div>
+      <div class="kpi-delta dn">↓ Agosto tranquilo</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-lbl">Crecimiento seg.</div>
+      <div class="kpi-val">+100</div>
+      <div class="kpi-note">Mes con menos variación</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-lbl">Guardados acum.</div>
+      <div class="kpi-val">413</div>
+      <div class="kpi-note">Contenido de referencia</div>
+    </div>
+  </div>
+
+  <div class="insight">
+    <strong>📌 Agosto es agosto</strong>
+    El mes con menos movimiento del período. Normal — el cliente (y la audiencia) están de vacaciones. El contenido publicado suma de cara a septiembre: el algoritmo sigue distribuyendo los reels antiguos aunque no se publique mucho.
+  </div>
+</section>
+
+<!-- ════════════════════ SEPTIEMBRE ════════════════════ -->
+<section class="month-section" id="sec-sep">
+  <div class="section-label">Mes 8 · Mejor mes</div>
+  <div class="section-title">Septiembre 2026</div>
+  <p class="section-desc">Vuelta al cole. El sorteo de sept tiene el engagement rate más alto del período completo.</p>
+
+  <div class="kpi-grid">
+    <div class="kpi">
+      <div class="kpi-lbl">Seguidores IG al cierre</div>
+      <div class="kpi-val">5.588</div>
+      <div class="kpi-delta up">↑ +488 vs ago</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-lbl">Impresiones</div>
+      <div class="kpi-val">270K</div>
+      <div class="kpi-delta up">↑ Mejor mes tras feb</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-lbl">Top post eng. rate</div>
+      <div class="kpi-val">38%</div>
+      <div class="kpi-note">Sorteo sept: 12.440 imp · 4.729 int</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-lbl">Facebook imp.</div>
+      <div class="kpi-val">558K</div>
+      <div class="kpi-note">Acumulado total FB</div>
+    </div>
+  </div>
+
+  <div class="insight">
+    <strong>🏆 Septiembre: el mejor engagement rate del año</strong>
+    El sorteo de septiembre tiene un 38% de engagement rate — el más alto de los tres sorteos. 4.729 interacciones sobre 12.440 impresiones. La comunidad está más madura y reacciona más que en febrero. Señal muy positiva de cara a Q4.
+  </div>
+
+  <div class="chart-card full">
+    <div class="chart-lbl">Evolución engagement rate por sorteo</div>
+    <svg id="c-sep-eng" viewBox="0 0 640 160" width="100%"></svg>
+  </div>
+</section>
+
+<!-- ════════════════════ GLOBAL ════════════════════ -->
+<section class="month-section" id="sec-global">
+  <div class="section-label">Resumen completo</div>
+  <div class="section-title">Feb – Sept 2026</div>
+  <p class="section-desc">8 meses. De cero a comunidad real. Todos los datos del período.</p>
+
+  <div class="kpi-grid">
+    <div class="kpi">
+      <div class="kpi-lbl">Seguidores finales IG</div>
+      <div class="kpi-val">5.588</div>
+      <div class="kpi-delta up">↑ +312% desde feb</div>
+      <div class="kpi-note">Partimos de ~1.360</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-lbl">Impresiones totales</div>
+      <div class="kpi-val">2,25M</div>
+      <div class="kpi-delta up">↑ IG 1,69M · FB 558K</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-lbl">Interacciones IG</div>
+      <div class="kpi-val">23.170</div>
+      <div class="kpi-delta up">↑ Likes + com + comp + guard</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-lbl">Gasto Meta Ads</div>
+      <div class="kpi-val">1.975€</div>
+      <div class="kpi-note">CPM 1,14€ · CPC 0,11€</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-lbl">Clics Meta Ads</div>
+      <div class="kpi-val">17.560</div>
+      <div class="kpi-delta up">CTR 1,01%</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-lbl">Publicaciones</div>
+      <div class="kpi-val">260</div>
+      <div class="kpi-note">182 IG · 78 FB</div>
+    </div>
+  </div>
+
+  <!-- GROWTH CHART -->
+  <div class="chart-card full" style="margin-bottom:12px">
+    <div class="chart-lbl">Crecimiento de seguidores mes a mes · Instagram</div>
+    <svg id="c-global-growth" viewBox="0 0 640 160" width="100%"></svg>
+    <div class="legend">
+      <div class="leg"><div class="leg-line" style="background:#4A7C59"></div>Seguidores Instagram</div>
+    </div>
+  </div>
+
+  <!-- IMPRESSIONS CHART -->
+  <div class="chart-card full" style="margin-bottom:12px">
+    <div class="chart-lbl">Impresiones mensuales · Instagram + Facebook</div>
+    <svg id="c-global-imp" viewBox="0 0 640 160" width="100%"></svg>
+    <div class="legend">
+      <div class="leg"><div class="leg-dot" style="background:#4A7C59"></div>Instagram</div>
+      <div class="leg"><div class="leg-dot" style="background:#A8D4B8"></div>Facebook</div>
+    </div>
+  </div>
+
+  <!-- AUDIENCIA -->
+  <div class="chart-row" style="margin-bottom:12px">
+    <div class="chart-card">
+      <div class="chart-lbl">Audiencia por género</div>
+      <svg id="c-gender" viewBox="0 0 260 130" width="100%"></svg>
+    </div>
+    <div class="chart-card">
+      <div class="chart-lbl">Audiencia por edad</div>
+      <svg id="c-age" viewBox="0 0 260 130" width="100%"></svg>
+    </div>
+  </div>
+
+  <!-- META ADS BENCHMARK -->
+  <div class="chart-card full" style="margin-bottom:12px">
+    <div class="chart-lbl">Meta Ads · Rendimiento vs. benchmark sector retail</div>
+    <svg id="c-bench" viewBox="0 0 640 120" width="100%"></svg>
+  </div>
+
+  <!-- TOP CONTENT TABLE -->
+  <div class="tbl-wrap" style="margin-bottom:12px">
+    <table>
+      <thead>
+        <tr>
+          <th>Publicación</th>
+          <th>Tipo</th>
+          <th>Impresiones</th>
+          <th>Interacciones</th>
+          <th>Eng. rate</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Sorteo San Valentín (Feb)</td>
+          <td><span class="badge badge-n">Post</span></td>
+          <td>30.860</td>
+          <td>9.086</td>
+          <td><strong style="color:#4A7C59">29,4%</strong></td>
+        </tr>
+        <tr>
+          <td>Sorteo Julio</td>
+          <td><span class="badge badge-n">Post</span></td>
+          <td>16.360</td>
+          <td>1.853</td>
+          <td><strong style="color:#4A7C59">11,3%</strong></td>
+        </tr>
+        <tr>
+          <td>Sorteo Septiembre</td>
+          <td><span class="badge badge-n">Post</span></td>
+          <td>12.440</td>
+          <td>4.729</td>
+          <td><strong style="color:#4A7C59">38,0%</strong></td>
+        </tr>
+        <tr>
+          <td>Reel "La jefa promete vacaciones"</td>
+          <td><span class="badge badge-g">Reel</span></td>
+          <td>6.338</td>
+          <td>—</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Contenido de tienda / novedades</td>
+          <td><span class="badge badge-n">Post</span></td>
+          <td>~2.500</td>
+          <td>~250</td>
+          <td>~10%</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="insight">
+    <strong>🎯 Patrón ganador del período</strong>
+    Sorteos = picos de impresiones y engagement. Reels humanos (la jefa, detrás de las cámaras) = viralidad orgánica. Contenido de producto = engagement sostenido bajo. La combinación de los tres formatos con Meta Ads local ha construido una comunidad real en 8 meses.
+  </div>
+
+  <!-- CONCLUSIONES -->
+  <div style="margin-top:24px;margin-bottom:8px">
+    <div class="section-label">Conclusiones</div>
+    <div class="section-title" style="font-size:1.2rem;margin-bottom:12px">Lo que nos dice el dato</div>
+  </div>
+
+  <div class="chart-row" style="margin-bottom:12px">
+    <div class="insight" style="margin-bottom:0">
+      <strong>🚀 Crecimiento x4 en 8 meses</strong>
+      Pasamos de ~1.360 a 5.588 seguidores en Instagram — un crecimiento del 312%. La base es sólida: la comunidad no se fue con los sorteos, el contenido regular la retiene.
+    </div>
+    <div class="insight" style="margin-bottom:0">
+      <strong>💰 Meta Ads muy eficiente</strong>
+      CPM de 1,14€ frente a una media del sector de 8–10€. CPC de 0,11€ vs ~1€ de benchmark. Por cada euro invertido se consiguen casi 9 clics. El presupuesto está trabajando muy por encima de la media.
+    </div>
+  </div>
+  <div class="chart-row" style="margin-bottom:24px">
+    <div class="insight" style="margin-bottom:0">
+      <strong>📍 Audiencia hiperlocal = calidad</strong>
+      El 41% de la audiencia es de Gijón. El 67% son mujeres de 35–54 años — exactamente el perfil comprador de deco/hogar. No es volumen por volumen: es la audiencia correcta.
+    </div>
+    <div class="insight" style="margin-bottom:0">
+      <strong>📈 Septiembre es la señal</strong>
+      El engagement rate del sorteo de septiembre (38%) supera al de febrero (29%) con menos impresiones. La comunidad está más madura y comprometida. Q4 arranca en el mejor momento posible.
+    </div>
+  </div>
+
+  <!-- PRÓXIMOS PASOS -->
+  <div style="margin-bottom:8px">
+    <div class="section-label">Próximos pasos</div>
+    <div class="section-title" style="font-size:1.2rem;margin-bottom:12px">Plan Q4 2026</div>
+  </div>
+
+  <div class="tbl-wrap" style="margin-bottom:20px">
+    <table>
+      <thead>
+        <tr>
+          <th>Acción</th>
+          <th>Cuándo</th>
+          <th>Objetivo</th>
+          <th>Formato</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Campaña Black Friday</strong><br><span style="font-size:.75rem;color:var(--fg-3)">Descuentos en muebles y deco seleccionados</span></td>
+          <td>15–29 Nov</td>
+          <td>Ventas + tráfico tienda</td>
+          <td><span class="badge badge-g">Meta Ads</span> <span class="badge badge-n">Reels</span></td>
+        </tr>
+        <tr>
+          <td><strong>Teaser Black Friday</strong><br><span style="font-size:.75rem;color:var(--fg-3)">"Algo se acerca" — intriga previa al lanzamiento</span></td>
+          <td>10–14 Nov</td>
+          <td>Expectativa + guardar post</td>
+          <td><span class="badge badge-n">Stories</span> <span class="badge badge-n">Post</span></td>
+        </tr>
+        <tr>
+          <td><strong>Sorteo Navidad</strong><br><span style="font-size:.75rem;color:var(--fg-3)">Premio: pieza deco o vale regalo</span></td>
+          <td>1–10 Dic</td>
+          <td>Engagement + nuevos seguidores</td>
+          <td><span class="badge badge-n">Post</span> <span class="badge badge-g">Meta Ads</span></td>
+        </tr>
+        <tr>
+          <td><strong>Contenido regalo navideño</strong><br><span style="font-size:.75rem;color:var(--fg-3)">"Ideas de regalo para tu hogar" — carruseles con productos</span></td>
+          <td>Nov–Dic</td>
+          <td>Guardados + alcance orgánico</td>
+          <td><span class="badge badge-n">Carrusel</span> <span class="badge badge-n">Reels</span></td>
+        </tr>
+        <tr>
+          <td><strong>Campaña Navidad Meta Ads</strong><br><span style="font-size:.75rem;color:var(--fg-3)">Segmentación local Gijón/Asturias, mujeres 35–54</span></td>
+          <td>1–24 Dic</td>
+          <td>Tráfico tienda física</td>
+          <td><span class="badge badge-g">Meta Ads</span></td>
+        </tr>
+        <tr>
+          <td><strong>Reel "detrás de las cámaras"</strong><br><span style="font-size:.75rem;color:var(--fg-3)">Decorando la tienda para Navidad, preparando pedidos</span></td>
+          <td>Dic</td>
+          <td>Viralidad orgánica</td>
+          <td><span class="badge badge-g">Reel</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="insight">
+    <strong>🎄 Por qué Q4 es la gran oportunidad</strong>
+    Con 5.588 seguidores comprometidos, CPM bajísimo y una audiencia que ya conoce la marca, Black Friday y Navidad son el momento de convertir comunidad en ventas. El sorteo de septiembre demuestra que la audiencia está lista para interactuar — solo hay que darle el incentivo correcto en el momento correcto.
+  </div>
+</section>
+
+<!-- FOOTER -->
+<div class="footer">
+  <span>🐌 El Caracol Verde · C/ Uría 46, Gijón</span>
+  <span>Datos Metricool · Feb–Sept 2026</span>
+</div>
+
+</div><!-- .main -->
+
+<script>
+// ── TABS ──────────────────────────────────────────
+document.querySelectorAll('.mtab').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.mtab').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.month-section').forEach(s => s.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('sec-' + btn.dataset.m).classList.add('active');
+  });
+});
+
+// ── TOOLTIP ───────────────────────────────────────
+const tt = document.getElementById('tt');
+function tip(e, html) {
+  tt.innerHTML = html; tt.classList.add('show');
+  tt.style.left = Math.min(e.clientX+12, window.innerWidth-180)+'px';
+  tt.style.top  = Math.max(e.clientY-38,8)+'px';
+}
+function moveTip(e) {
+  tt.style.left = Math.min(e.clientX+12, window.innerWidth-180)+'px';
+  tt.style.top  = Math.max(e.clientY-38,8)+'px';
+}
+function hideTip() { tt.classList.remove('show'); }
+
+// ── HELPERS ───────────────────────────────────────
+function cv(n){ return getComputedStyle(document.documentElement).getPropertyValue(n).trim(); }
+function fmt(n){ return n>=1e6?(n/1e6).toFixed(2).replace('.',',')+'M':n>=1e3?(n/1e3).toFixed(0)+'K':n; }
+
+// ── AREA LINE ─────────────────────────────────────
+function areaLine(id, labels, values, color, W=640, H=160, maxOverride){
+  const svg=document.getElementById(id); if(!svg)return;
+  const pL=42,pR=16,pT=12,pB=26;
+  const g=cv('--fg-3'), bg=cv('--bg-card');
+  const maxV=maxOverride||Math.max(...values)*1.12;
+  const minV=0;
+  function xp(i){return pL+(i/(labels.length-1))*(W-pL-pR);}
+  function yp(v){return pT+(1-(v-minV)/(maxV-minV))*(H-pT-pB);}
+
+  const gid='ag'+id;
+  let s=`<defs><linearGradient id="${gid}" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="${color}" stop-opacity=".18"/>
+    <stop offset="100%" stop-color="${color}" stop-opacity=".01"/>
+  </linearGradient></defs>`;
+
+  // grid
+  const steps=3;
+  for(let i=0;i<=steps;i++){
+    const v=Math.round(maxV*i/steps);
+    const y=yp(v);
+    s+=`<line x1="${pL}" y1="${y}" x2="${W-pR}" y2="${y}" stroke="${g}" stroke-width="1" stroke-opacity=".2"/>`;
+    s+=`<text x="${pL-4}" y="${y+4}" text-anchor="end" fill="${g}" font-size="9">${fmt(v)}</text>`;
+  }
+  // area
+  let area=`M${xp(0)},${yp(values[0])}`;
+  values.forEach((v,i)=>{if(i>0)area+=` L${xp(i)},${yp(v)}`;});
+  area+=` L${xp(values.length-1)},${H-pB} L${xp(0)},${H-pB} Z`;
+  s+=`<path d="${area}" fill="url(#${gid})"/>`;
+  // line
+  let line=`M${xp(0)},${yp(values[0])}`;
+  values.forEach((v,i)=>{if(i>0)line+=` L${xp(i)},${yp(v)}`;});
+  s+=`<path d="${line}" fill="none" stroke="${color}" stroke-width="2"/>`;
+  // dots
+  values.forEach((v,i)=>{
+    s+=`<circle class="dot" cx="${xp(i)}" cy="${yp(v)}" r="4.5" fill="${bg}" stroke="${color}" stroke-width="2" data-t="${labels[i]}: ${v.toLocaleString('es-ES')}"/>`;
+    s+=`<text x="${xp(i)}" y="${H-pB+14}" text-anchor="middle" fill="${g}" font-size="9">${labels[i]}</text>`;
+  });
+  svg.innerHTML=s; svg.setAttribute('viewBox',`0 0 ${W} ${H}`);
+  svg.querySelectorAll('.dot').forEach(d=>{
+    d.addEventListener('mouseenter',e=>tip(e,d.dataset.t));
+    d.addEventListener('mousemove',moveTip);
+    d.addEventListener('mouseleave',hideTip);
+  });
+}
+
+// ── VBAR ──────────────────────────────────────────
+function vbar(id, labels, datasets, W=640, H=160){
+  // datasets: [{values, color}]
+  const svg=document.getElementById(id); if(!svg)return;
+  const pL=42,pR=16,pT=12,pB=26;
+  const g=cv('--fg-3');
+  const n=labels.length;
+  const maxV=Math.max(...datasets.flatMap(d=>d.values))*1.12;
+  const colW=(W-pL-pR)/n;
+  const bw=colW*0.7/datasets.length;
+  function yp(v){return pT+(1-v/maxV)*(H-pT-pB);}
+
+  const steps=3;
+  let s='';
+  for(let i=0;i<=steps;i++){
+    const v=Math.round(maxV*i/steps);
+    const y=yp(v);
+    s+=`<line x1="${pL}" y1="${y}" x2="${W-pR}" y2="${y}" stroke="${g}" stroke-width="1" stroke-opacity=".2"/>`;
+    s+=`<text x="${pL-4}" y="${y+4}" text-anchor="end" fill="${g}" font-size="9">${fmt(v)}</text>`;
+  }
+  labels.forEach((lbl,i)=>{
+    datasets.forEach((ds,di)=>{
+      const v=ds.values[i];
+      const x=pL+i*colW+colW*0.15+di*(bw+2);
+      const y=yp(v); const bh=H-pB-y;
+      s+=`<rect class="bar" x="${x}" y="${y}" width="${bw}" height="${bh}" rx="3" fill="${ds.color}" data-t="${lbl}: ${v.toLocaleString('es-ES')}"/>`;
+    });
+    s+=`<text x="${pL+i*colW+colW*0.5}" y="${H-pB+14}" text-anchor="middle" fill="${g}" font-size="9">${lbl}</text>`;
+  });
+  svg.innerHTML=s; svg.setAttribute('viewBox',`0 0 ${W} ${H}`);
+  svg.querySelectorAll('.bar').forEach(b=>{
+    b.addEventListener('mouseenter',e=>tip(e,b.dataset.t));
+    b.addEventListener('mousemove',moveTip);
+    b.addEventListener('mouseleave',hideTip);
+  });
+}
+
+// ── HBAR ──────────────────────────────────────────
+function hbar(id, labels, values, colors, W=280, H=120){
+  const svg=document.getElementById(id); if(!svg)return;
+  const pL=10,pR=55,pT=8,pB=8;
+  const g=cv('--fg-3'), fg=cv('--fg');
+  const maxV=Math.max(...values);
+  const rowH=(H-pT-pB)/labels.length;
+  let s='';
+  labels.forEach((lbl,i)=>{
+    const y=pT+i*rowH;
+    const bw=((values[i]/maxV)*(W-pL-pR-70));
+    const col=Array.isArray(colors)?colors[i]:colors;
+    s+=`<rect class="bar" x="75" y="${y+5}" width="${Math.max(bw,2)}" height="${rowH-12}" rx="3" fill="${col}" data-t="${lbl}: ${values[i].toLocaleString('es-ES')}"/>`;
+    s+=`<text x="70" y="${y+rowH/2+4}" text-anchor="end" fill="${g}" font-size="9">${lbl}</text>`;
+    s+=`<text x="${78+bw+3}" y="${y+rowH/2+4}" fill="${g}" font-size="9" font-weight="600">${typeof values[i]==='number'&&values[i]<100?values[i]+'%':values[i].toLocaleString('es-ES')}</text>`;
+  });
+  svg.innerHTML=s; svg.setAttribute('viewBox',`0 0 ${W} ${H}`);
+  svg.querySelectorAll('.bar').forEach(b=>{
+    b.addEventListener('mouseenter',e=>tip(e,b.dataset.t));
+    b.addEventListener('mousemove',moveTip);
+    b.addEventListener('mouseleave',hideTip);
+  });
+}
+
+// ── DONUT ─────────────────────────────────────────
+function donut(id,data,colors,W=120,H=120){
+  const svg=document.getElementById(id); if(!svg)return;
+  const cx=W/2,cy=H/2,r=W*0.42,ir=W*0.22;
+  const total=data.reduce((a,d)=>a+d.v,0);
+  let a=-Math.PI/2,s='';
+  data.forEach((d,i)=>{
+    const da=(d.v/total)*2*Math.PI;
+    const ea=a+da;
+    const [x1,y1]=[cx+r*Math.cos(a),cy+r*Math.sin(a)];
+    const [x2,y2]=[cx+r*Math.cos(ea),cy+r*Math.sin(ea)];
+    const [ix1,iy1]=[cx+ir*Math.cos(a),cy+ir*Math.sin(a)];
+    const [ix2,iy2]=[cx+ir*Math.cos(ea),cy+ir*Math.sin(ea)];
+    const lg=da>Math.PI?1:0;
+    s+=`<path class="dseg" d="M${ix1},${iy1}L${x1},${y1}A${r},${r} 0 ${lg} 1 ${x2},${y2}L${ix2},${iy2}A${ir},${ir} 0 ${lg} 0 ${ix1},${iy1}Z" fill="${colors[i]}" data-t="${d.l}: ${d.v}%"/>`;
+    a=ea;
+  });
+  svg.innerHTML=s; svg.setAttribute('viewBox',`0 0 ${W} ${H}`);
+  svg.querySelectorAll('.dseg').forEach(seg=>{
+    seg.addEventListener('mouseenter',e=>tip(e,seg.dataset.t));
+    seg.addEventListener('mousemove',moveTip);
+    seg.addEventListener('mouseleave',hideTip);
+  });
+}
+
+// ── DATA ──────────────────────────────────────────
+const months=['Feb','Mar','Abr','May','Jun','Jul','Ago','Sept'];
+const seguidores=[1360,2850,3950,4700,4900,5000,5100,5588];
+const impIG=[320000,285000,180000,160000,120000,215000,140000,270000];
+const impFB=[45000,90000,70000,55000,60000,80000,75000,83530];
+
+function initAll(){
+  const g1=cv('--green'), g2='#6EA882', g3='#A8D4B8', coral=cv('--coral');
+
+  // FEB
+  hbar('c-feb-imp',['IG Orgánico','Meta Ads','FB'],[140000,130000,50000],[g1,g2,g3],280,120);
+  hbar('c-feb-top',['S. Valentín','Tienda','Stories'],[30860,2500,900],[g1,g2,g3],280,90);
+
+  // MAR — growth mini
+  areaLine('c-mar-growth',['Feb','Mar'],[1360,2850],g1,640,140,4000);
+
+  // ABR — formato
+  hbar('c-abr-format',['Reels (10)','Carruseles','Estáticos','Historias'],[25000,8000,5000,15000],[g1,g2,g3,'#C8E0D0'],640,130);
+
+  // JUL — sorteos comparison
+  vbar('c-jul-sorteos',
+    ['Sorteo Feb','Sorteo Jul','Sorteo Sept'],
+    [{values:[308,163,124],color:g1},{values:[9086,1853,4729],color:g2}],
+    640,160
+  );
+
+  // SEP — eng rate
+  vbar('c-sep-eng',
+    ['Sorteo Feb','Sorteo Jul','Sorteo Sept'],
+    [{values:[29.4,11.3,38.0],color:g1}],
+    640,160
+  );
+
+  // GLOBAL — growth
+  areaLine('c-global-growth',months,seguidores,g1,640,160,6500);
+
+  // GLOBAL — impressions grouped
+  vbar('c-global-imp',months,
+    [{values:impIG,color:g1},{values:impFB,color:g3}],
+    640,160
+  );
+
+  // AUDIENCIA género (hbar horizontal in chart card)
+  hbar('c-gender',['Mujeres','Hombres','N/E'],[67.34,11.85,20.81],[g1,g2,g3],260,130);
+
+  // AUDIENCIA edad
+  hbar('c-age',['35–44','45–54','55–64','25–34','65+','18–24'],[28.6,30.2,22.1,8.4,8.6,2.1],[g1,g1,g2,g2,g3,g3],260,130);
+
+  // BENCHMARK — mostramos real vs benchmark con barras pareadas
+  {
+    const svg=document.getElementById('c-bench'); if(!svg)return;
+    const W=640,H=120,pL=90,pR=16,pT=10,pB=24;
+    const fg3=cv('--fg-3');
+    const items=[
+      {lbl:'CPM real',v:1.14,max:12,disp:'1,14€',col:g1},
+      {lbl:'CPM benchmark',v:8.5,max:12,disp:'~8,50€',col:'#E0E0E0'},
+      {lbl:'CPC real',v:0.11,max:1.5,disp:'0,11€',col:g1},
+      {lbl:'CPC benchmark',v:1.0,max:1.5,disp:'~1,00€',col:'#E0E0E0'},
+    ];
+    const rowH=(H-pT-pB)/items.length;
+    let s='';
+    items.forEach((it,i)=>{
+      const y=pT+i*rowH;
+      const bw=((it.v/it.max)*(W-pL-pR-60));
+      s+=`<rect x="${pL}" y="${y+4}" width="${Math.max(bw,2)}" height="${rowH-9}" rx="3" fill="${it.col}"/>`;
+      s+=`<text x="${pL-5}" y="${y+rowH/2+4}" text-anchor="end" fill="${fg3}" font-size="9">${it.lbl}</text>`;
+      s+=`<text x="${pL+bw+5}" y="${y+rowH/2+4}" fill="${fg3}" font-size="9" font-weight="600">${it.disp}</text>`;
+    });
+    svg.innerHTML=s; svg.setAttribute('viewBox',`0 0 ${W} ${H}`);
+  }
+}
+
+if(document.readyState==='loading'){
+  document.addEventListener('DOMContentLoaded',initAll);
+} else { initAll(); }
+
+window.matchMedia('(prefers-color-scheme:dark)').addEventListener('change',()=>setTimeout(initAll,60));
+</script>
+
+</body></html>
